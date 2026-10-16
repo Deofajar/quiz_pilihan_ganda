@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screens/home_screen.dart';
+import 'theme/app_theme.dart';
 
 /// Widget akar aplikasi: mengatur judul, tema, dan halaman pertama.
 class KuisApp extends StatelessWidget {
@@ -11,9 +12,9 @@ class KuisApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kuis Pilihan Ganda',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-      ),
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: ThemeMode.system,
       home: const HomeScreen(),
     );
   }
