@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../screens/name_screen.dart';
+import '../../screens/quiz_screen.dart';
 import '../../screens/subject_screen.dart';
 
 /// Nama route (named route) dan pemetaannya ke halaman.
@@ -14,9 +15,11 @@ class AppRoutes {
 
   static const String name = '/';
   static const String subject = '/subject';
+  static const String quiz = '/quiz';
 
   static Map<String, WidgetBuilder> get routes => {
         name: (_) => const NameScreen(),
         subject: (_) => const SubjectScreen(),
+        quiz: (_) => const QuizScreen(),
       };
 }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:kuis_pilihan_ganda/app.dart';
 import 'package:kuis_pilihan_ganda/providers/quiz_provider.dart';
 import 'package:kuis_pilihan_ganda/providers/theme_provider.dart';
+import 'package:kuis_pilihan_ganda/screens/subject_screen.dart';
 
 /// Susunan yang sama dengan main.dart.
 Widget buildApp() {
@@ -36,14 +37,17 @@ void main() {
       await tester.tap(find.text('Mulai'));
       await tester.pump();
       expect(find.text('Nama tidak boleh kosong'), findsOneWidget);
-      expect(find.text('Pilih Mata Pelajaran'), findsNothing);
+      expect(find.byType(SubjectScreen), findsNothing);
 
       // Nama valid -> pindah ke halaman subject dan nama tersimpan.
       await tester.enterText(find.byType(TextField), '  Blessy ');
       await tester.tap(find.text('Mulai'));
       await tester.pumpAndSettle();
-      expect(find.text('Pilih Mata Pelajaran'), findsOneWidget);
-      expect(find.text('Halo, Blessy'), findsOneWidget);
+      expect(find.byType(SubjectScreen), findsOneWidget);
+      final quiz =
+          tester.element(find.byType(SubjectScreen)).read<QuizProvider>();
+      expect(quiz.userName, 'Blessy');
+      expect(find.text('Blessy'), findsOneWidget);
     },
   );
 

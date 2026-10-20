@@ -7,12 +7,11 @@ import '../core/routes/app_routes.dart';
 import '../core/theme/app_colors.dart';
 import '../core/utils/responsive.dart';
 import '../providers/quiz_provider.dart';
-import '../providers/theme_provider.dart';
 import '../widgets/app_logo.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/hero_illustration.dart';
-import '../widgets/icon_square_button.dart';
 import '../widgets/primary_button.dart';
+import '../widgets/theme_toggle_button.dart';
 
 /// Halaman 1: pengguna memasukkan nama sebelum memulai kuis.
 ///
@@ -252,20 +251,13 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = context.watch<ThemeProvider>();
-    final isDark = themeProvider.isDark;
-
     return Row(
       children: [
         const Expanded(
           child: Align(alignment: Alignment.centerLeft, child: AppLogo()),
         ),
         SizedBox(width: context.s(12)),
-        IconSquareButton(
-          icon: isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-          tooltip: isDark ? 'Ganti ke mode terang' : 'Ganti ke mode gelap',
-          onPressed: themeProvider.toggleTheme,
-        ),
+        const ThemeToggleButton(),
       ],
     );
   }
